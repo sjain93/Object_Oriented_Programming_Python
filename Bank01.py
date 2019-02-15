@@ -1,7 +1,7 @@
 class BankAccount:
     """Class representing a bank account """
 
-    def __init__(self, fname, lname, balance = 0, interest = 0):
+    def __init__(self, fname, lname, balance = 0, interest = 1.5):
         self.first_name = fname
         self.last_name = lname
         self.balance = balance
@@ -18,6 +18,9 @@ class BankAccount:
         self.removed_amount = amount
         self.balance = self.balance - amount
 
+    def gain_interest(self):
+        self.balance = self.balance*(1 + self.interest_rate/100)
+
 
 TestAcc = BankAccount("Sanchit", "Jain", 20, 0)
 TestAcc.interest_rate = 1.64
@@ -29,5 +32,9 @@ TestAcc.deposit(20)
 print(TestAcc)
 
 TestAcc.withdraw(5)
+
+print(TestAcc)
+
+TestAcc.gain_interest()
 
 print(TestAcc)
