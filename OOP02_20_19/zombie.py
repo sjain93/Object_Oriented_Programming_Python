@@ -34,10 +34,14 @@ class Zombie:
         count = 0
 
         while count < new_zombies:
-          speed = random.randint(1, Zombie.max_speed)
-          strength = random.randint(1, Zombie.max_strength)
-          Zombie.horde.append(Zombie(speed,strength))
+          Zombie.single_spawn()
           count += 1
+
+    @classmethod
+    def single_spawn(cls):
+        speed = random.randint(1, Zombie.max_speed)
+        strength = random.randint(1, Zombie.max_strength)
+        Zombie.horde.append(Zombie(speed,strength))
 
     @classmethod
     def new_day(cls):
@@ -59,18 +63,27 @@ class Zombie:
             Zombie.horde.pop(random_zombie)
             counter += 1
 
+    @classmethod
+    def increase_plague_level:
+
+
     def encounter(self):
         """This instance method represents you coming across a zombie! This can end in two possible outcomes:
         1. You outrun the zombie and escape unscathed!
-        2. You don't outrun the zombie. It eats your brains and you die. :(
+        2. You fight the zombie but also bcome one :()
+        3. You don't outrun or lose the fight to the zombie. It eats your brains and you die. :(
         Returns a summary of what happened.
         """
         outrun = self.chase()
-
+        fight = self.fight()
         if outrun:
           return 'You escaped!'
+        elif fight:
+          Zombie.single_spawn()
+          return 'You won, but you are now a zombie. Raawwwrghh"'
         else:
           return 'You died.'
+
 
     def chase(self):
         """Represents you trying to outrun this particular zombie.
@@ -79,8 +92,13 @@ class Zombie:
         your_speed = random.randint(1, Zombie.max_speed)
         return your_speed > self.speed
 
+    def fight(self):
+        """Represents you trying to fight this particular zombie.
+        Uses `Zombie.max_strength` to generate a random number that represents how strong you are in the encounter, returns true if you are stronger than the Zombie else false.
+        """
+        your_strength = random.randint(1, Zombie.max_strength)
+        return your_strength > self.strength:
+
+
+
 #Test cases
-Zombie.spawn()
-for zombie in Zombie.horde:
-    print(zombie)
-print(len(Zombie.horde))
