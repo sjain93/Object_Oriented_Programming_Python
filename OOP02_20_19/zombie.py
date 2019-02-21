@@ -51,6 +51,7 @@ class Zombie:
         """
         Zombie.spawn()
         Zombie.some_die_off()
+        Zombie.increase_plague_level()
 
     @classmethod
     def some_die_off(cls):
@@ -64,7 +65,11 @@ class Zombie:
             counter += 1
 
     @classmethod
-    def increase_plague_level:
+    def increase_plague_level(cls):
+        """Adds a random number (between 0 and 2) to the plague_level.
+        """
+        inc = random.randint(0,2)
+        Zombie.plague_level += inc
 
 
     def encounter(self):
@@ -97,8 +102,23 @@ class Zombie:
         Uses `Zombie.max_strength` to generate a random number that represents how strong you are in the encounter, returns true if you are stronger than the Zombie else false.
         """
         your_strength = random.randint(1, Zombie.max_strength)
-        return your_strength > self.strength:
+        return your_strength > self.strength
 
 
 
 #Test cases
+# print(Zombie.horde) # []
+Zombie.new_day()
+print(Zombie.horde)
+zombie1 = Zombie.horde[0]
+print(zombie1) # Speed: 1 -- Strength: 7
+zombie2 = Zombie.horde[1]
+print(zombie2) # Speed: 2 -- Strength: 7
+print(zombie1.encounter()) # You escaped!
+print(zombie2.encounter()) # You fought the zombie and caught the plague.  You are now a zombie too.  Raaaawrgh
+Zombie.new_day()
+print(Zombie.horde) # [<__main__.Zombie object at 0x7f6f594f0d30>, <__main__.Zombie object at 0x7f6f594efef0>, <__main__.Zombie object at 0x7f6f594f0c50>, <__main__.Zombie object at 0x7f6f594f0cc0>]
+zombie1 = Zombie.horde[0]
+zombie2 = Zombie.horde[1]
+print(zombie1.encounter()) # You died!
+print(zombie2.encounter()) # You escaped!
