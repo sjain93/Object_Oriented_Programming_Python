@@ -4,6 +4,7 @@ import random
 class Book:
     on_shelf = []
     on_loan = []
+    overdue = []
 
     @classmethod
     def create(cls, title, author, ISBN):
@@ -21,6 +22,13 @@ class Book:
         two_weeks = 60*60*24*14
         future_timestamp = now.timestamp() + two_weeks
         return datetime.fromtimestamp(future_timestamp)
+
+    @classmethod
+    def overdue(cls):
+        for books in Book.on_loan:
+            if books.due_date < datetime.now():
+                Book.overdue.append(books)
+        return Book.overdue
 
     def borrow(self):
         if self.lent_out() == True:
@@ -68,3 +76,4 @@ print(aint_i.lent_out())
 sister_outsider.return_to_library()
 print(Book.on_loan)
 print(Book.on_shelf)
+print(len(Book.overdue()))
